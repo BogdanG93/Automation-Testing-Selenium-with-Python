@@ -1,16 +1,15 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
-
-from base_page import Base_page
+from pages.base_page import Base_page
 
 
 class Home_page(Base_page):
-    SEARCH_BOX = ()
-    SEARCH_BUTTON = ()
-    SEARCH_CATEGORIES = ()
-    ADVANCED_SEARCH_LINK = ()
-    SEARCH_RESULTS = ()
-    HOMEPAGE_URL = ""
+    SEARCH_BOX = (By.ID, "gh-ac")
+    SEARCH_BUTTON = (By.ID, "gh-btn")
+    SEARCH_CATEGORIES = (By.ID, "gh-btn")
+    ADVANCED_SEARCH_LINK = (By.ID, "gh-as-a")
+    SEARCH_RESULTS = (By.XPATH, "//h1/span[@class='BOLD'][1]")
+    HOMEPAGE_URL = "https://www.ebay.com/"
 
     def navigate_to_homepage(self):
         self.chrome.get(self.HOMEPAGE_URL)
@@ -29,4 +28,4 @@ class Home_page(Base_page):
         self.chrome.find_element(*self.SEARCH_RESULTS)
 
     def click_advanced_search_link(self):
-        self.chrome.find_element(*self.ADVANCED_SEARCH_LINK)
+        self.chrome.find_element(*self.ADVANCED_SEARCH_LINK).click()

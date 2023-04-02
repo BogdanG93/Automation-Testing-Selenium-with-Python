@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/10. Test suites" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/10. Test suites/app" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/11. BDD/pages" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/11. BDD" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
