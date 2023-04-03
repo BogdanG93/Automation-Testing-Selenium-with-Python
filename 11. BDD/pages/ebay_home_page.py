@@ -6,7 +6,7 @@ from pages.base_page import Base_page
 class Home_page(Base_page):
     SEARCH_BOX = (By.ID, "gh-ac")
     SEARCH_BUTTON = (By.ID, "gh-btn")
-    SEARCH_CATEGORIES = (By.ID, "gh-btn")
+    SEARCH_CATEGORIES = (By.ID, "gh-cat")
     ADVANCED_SEARCH_LINK = (By.ID, "gh-as-a")
     SEARCH_RESULTS = (By.XPATH, "//h1/span[@class='BOLD'][1]")
     HOMEPAGE_URL = "https://www.ebay.com/"
@@ -25,7 +25,9 @@ class Home_page(Base_page):
         self.chrome.find_element(*self.SEARCH_BUTTON).click()
 
     def check_search_results(self):
-        self.chrome.find_element(*self.SEARCH_RESULTS)
+        no_results = self.chrome.find_element(*self.SEARCH_RESULTS).text
+        result = no_results.replace(",", "")
+        assert int(result) >= 1000, f"ERROR: No of Results is incorrect. EXPECTED: 1000, ACTUAL {result}"
 
     def click_advanced_search_link(self):
         self.chrome.find_element(*self.ADVANCED_SEARCH_LINK).click()

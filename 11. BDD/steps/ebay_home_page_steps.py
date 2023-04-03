@@ -4,6 +4,7 @@ from behave import *
 @given("Home page: I am on ebay homepage")
 def step_impl(context):
     context.home_page_object.navigate_to_homepage()
+    context.home_page_object.accept_cookies()
 
 
 @when("Home page: I search for iphone from category Cell Phones & Accessories")
