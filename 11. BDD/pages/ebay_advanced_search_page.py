@@ -10,16 +10,16 @@ class Advanced_search_page(Base_page):
     SEARCH_CATEGORY = (By.ID, "s0-1-17-4[0]-7[3]-_sacat")
     SEARCH_BUTTON = (By.XPATH, "//div[@class='field adv-keywords__btn-help']/child::button")
 
-    def enter_keywords_or_item_number(self):
-        self.chrome.find_element(*self.ENTER_KEYWORDS_OR_ITEM_NUMBER).send_keys("Pampers")
+    def enter_keywords_or_item_number(self, category_name):
+        self.chrome.find_element(*self.ENTER_KEYWORDS_OR_ITEM_NUMBER).send_keys(category_name)
 
-    def select_keywords_option(self):
+    def select_keywords_option(self, keyword_option):
         keyword_dropdown = Select(self.chrome.find_element(*self.KEYWORD_OPTIONS))
-        keyword_dropdown.select_by_visible_text("Exact words, exact order")
+        keyword_dropdown.select_by_visible_text(keyword_option)
 
-    def select_search_category(self):
+    def select_search_category(self, category):
         category_dropdown = Select(self.chrome.find_element(*self.SEARCH_CATEGORY))
-        category_dropdown.select_by_visible_text("Baby")
+        category_dropdown.select_by_visible_text(category)
 
     def click_search_button(self):
-        self.chrome.wait_and_click_element_by_selector(*self.SEARCH_BUTTON).click()
+        self.chrome.find_element(*self.SEARCH_BUTTON).click()

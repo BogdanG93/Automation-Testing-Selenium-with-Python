@@ -14,20 +14,20 @@ class Home_page(Base_page):
     def navigate_to_homepage(self):
         self.chrome.get(self.HOMEPAGE_URL)
 
-    def insert_search_value(self):
-        self.chrome.find_element(*self.SEARCH_BOX).send_keys("iphone")
+    def insert_search_value(self, product_name):
+        self.chrome.find_element(*self.SEARCH_BOX).send_keys(product_name)
 
-    def choose_category(self):
+    def choose_category(self, category_name):
         category_dropdown = Select(self.chrome.find_element(*self.SEARCH_CATEGORIES))
-        category_dropdown.select_by_visible_text("Cell Phones & Accessories")
+        category_dropdown.select_by_visible_text(category_name)
 
     def click_search_button(self):
         self.chrome.find_element(*self.SEARCH_BUTTON).click()
 
-    def check_search_results(self):
+    def check_search_results(self, no_of_results):
         no_results = self.chrome.find_element(*self.SEARCH_RESULTS).text
         result = no_results.replace(",", "")
-        assert int(result) >= 1000, f"ERROR: No of Results is incorrect. EXPECTED: 1000, ACTUAL {result}"
+        assert int(result) >= int(no_of_results), f"ERROR: No of Results is incorrect. EXPECTED: 1000, ACTUAL {result}"
 
     def click_advanced_search_link(self):
         self.chrome.find_element(*self.ADVANCED_SEARCH_LINK).click()
